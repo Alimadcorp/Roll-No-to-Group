@@ -1,22 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tutorial Group & Friday Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1.1rem;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            background-color: #1E88E5;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1565C0;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        sub {
+            font-size: 0.8rem;
+            vertical-align: baseline;
+            color: #BBBBBB;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Tutorial Group & Friday Calculator</h1>
-    <label for="rollNoInput">Enter Roll Number:</label>
-    <input type="number" id="rollNoInput">
+    <label for="rollNoInput">Enter Roll Number</label>
+    <input type="number" id="rollNoInput" placeholder="e.g., 3686">
     <button onclick="calculateTutorialGroup()">Calculate</button>
-    
+
     <p id="result"></p>
+
+    <sub>Note: Results based on tutorial group distribution</sub>
 
     <script>
         function calculateTutorialGroup() {
             var rollNo = document.getElementById('rollNoInput').value;
+            if (!rollNo) {
+                document.getElementById('result').innerText = "Please enter a valid roll number.";
+                return;
+            }
+
             var remainder = rollNo % 40;
-            var groupNumber = remainder === 0 ? 40 : remainder; // Group numbers from 1 to 40
-            
+            var groupNumber = remainder === 0 ? 40 : remainder;
+
             var friday;
             if (groupNumber >= 1 && groupNumber <= 10) {
                 friday = "First Friday";
@@ -33,5 +107,6 @@
                 "Attend on: " + friday;
         }
     </script>
+
 </body>
 </html>
