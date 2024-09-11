@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tutorial Group & Friday Calculator</title>
+</head>
+<body>
+    <h1>Tutorial Group & Friday Calculator</h1>
+    <label for="rollNoInput">Enter Roll Number:</label>
+    <input type="number" id="rollNoInput">
+    <button onclick="calculateTutorialGroup()">Calculate</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function calculateTutorialGroup() {
+            var rollNo = document.getElementById('rollNoInput').value;
+            var remainder = rollNo % 40;
+            var groupNumber = remainder === 0 ? 40 : remainder; // Group numbers from 1 to 40
+            
+            var friday;
+            if (groupNumber >= 1 && groupNumber <= 10) {
+                friday = "First Friday";
+            } else if (groupNumber >= 11 && groupNumber <= 20) {
+                friday = "Second Friday";
+            } else if (groupNumber >= 21 && groupNumber <= 30) {
+                friday = "Third Friday";
+            } else if (groupNumber >= 31 && groupNumber <= 40) {
+                friday = "Fourth Friday";
+            }
+
+            document.getElementById('result').innerText = 
+                "Tutorial Group: " + groupNumber + "\n" + 
+                "Attend on: " + friday;
+        }
+    </script>
+</body>
+</html>
