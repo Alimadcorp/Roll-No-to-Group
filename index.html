@@ -6,68 +6,112 @@
     <title>Tutorial Group Calculator</title>
     <link rel="icon" href="gculogomain.23384110.png" type="image/png">
     <style>
-         body {
+        body {
             font-family: 'Arial', sans-serif;
-            background-color: #121212;
+            background-image: linear-gradient(to top, #0c0c66, #020022);
             color: #ffffff;
-            margin: 30px; /* Increased margin width */
+            margin: 20px; 
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: calc(100vh - 60px); /* Adjust height due to margin */
+            height: calc(100vh - 40px); 
             text-align: center;
-            overflow: hidden; /* Disable scrolling */
-         }
+            overflow: hidden; 
+        }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease-in-out;
         }
 
         label {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
             display: block;
+            animation: fadeIn 1.2s ease-in-out;
         }
 
         input {
-            padding: 10px;
+            padding: 15px;
             font-size: 1.1rem;
             width: 80%;
-            max-width: 300px;
+            max-width: 350px;
             margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
+            border: 2px solid #1E88E5;
+            border-radius: 10px;
+            background-color: #121212;
+            color: #fff;
             outline: none;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            animation: fadeIn 1.4s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #ff65FF;
+            box-shadow: 0 0 10px rgba(255, 101, 255, 0.5);
         }
 
         button {
             background-color: #1E88E5;
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 30px;
             border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s ease;
+            animation: fadeIn 1.6s ease-in-out;
         }
 
         button:hover {
             background-color: #1565C0;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #FF1039;
+            transform: scale(0.98);
         }
 
         #result {
-            margin-top: 20px;
-            font-size: 1.3rem;
+            margin-top: 30px;
+            font-size: 1.5rem;
             font-weight: bold;
+            color: #ffffFF;
+            animation: fadeIn 1.8s ease-in-out;
         }
 
-        sub {
+        .red-sub, .gray-sub {
             font-size: 0.8rem;
             vertical-align: baseline;
-            color: #BB3333;
+            opacity: 0.8;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .red-sub {
+            color: #ff2222;
+            margin-top: 10px;
+        }
+
+        .gray-sub {
+            color: #fff;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -80,14 +124,18 @@
 
     <p id="result"></p>
 
-    <sub><strong>Note:</strong> This algorithm is under review by one of the staff and it is not yet confirmed wether it is correct or not. <br>Written by Muhammad Ali
-    
-    </sub>
+    <sub class="red-sub"><strong>Note:</strong> This algorithm is under review by one of the staff members, and it has not yet been confirmed whether it is correct.</sub>
+    <sub class="gray-sub">
+    <a href="https://alimad.itch.io" style="color: inherit; text-decoration: none;">
+			<strong>Written by Muhammad Ali</strong>
+		</a>
+	</sub>
+
 
     <script>
         function calculateTutorialGroup() {
             var rollNo = document.getElementById('rollNoInput').value;
-            if (!rollNo) {
+            if (!rollNo || rollNo < 0) {
                 document.getElementById('result').innerText = "Please enter a valid roll number.";
                 return;
             }
